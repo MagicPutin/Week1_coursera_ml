@@ -68,4 +68,4 @@ index = 0
 print(female_mode_name)
 # Test
 # data_v1 = data.loc[data['Sex'] == 'female']
-# print('')
+

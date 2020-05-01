@@ -43,6 +43,7 @@ with open('answers/task_5.txt', 'w') as task5:
 
 # Task 6
 # my version
+task6 = open('answers/task_6.txt', 'w')
 female_memes = data.loc[data['Sex'] == 'female']['Name']
 female_mode_name = pd.Series(['0'], index=[0])
 index = 0
@@ -61,11 +62,12 @@ for i in female_memes:
     index += 1
     without_surname = i.split(',')
     if without_surname[1].split(' ')[1] == 'Mrs.' or without_surname[1].split(' ')[1] == 'the':
-        print(without_surname[1].split('('))
+        for j in i.split(' '):
+            if '(' in j:
+                female_mode_name = female_mode_name.append(pd.Series(j[1:], index=[index]))
     else:
         female_mode_name = female_mode_name.append(pd.Series(without_surname[1].split(' ')[2], index=[index]))
 index = 0
-print(female_mode_name)
-# Test
-# data_v1 = data.loc[data['Sex'] == 'female']
+task6.write(str(*female_mode_name.mode()))
+task6.close()
 
